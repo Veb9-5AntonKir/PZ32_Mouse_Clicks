@@ -7,14 +7,30 @@ const hoverZone = document.querySelector("#hover-zone");
 const status = document.querySelector("#status");
 let points = 0;
 
-// Задание 1. Подключите click к scoreButton.
-// Внутри обработчика увеличьте points, затем обновите score.textContent и status.
 
-// Задание 2. Подключите dblclick к doubleCard.
-// Переключите класс is-selected и измените текст status.
+document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('click', (event) => {
+        if (event.target.tagName === 'BUTTON') {
+            console.log(`Нажата кнопка: ${event.target.textContent}`);
+            handleButtonClick(event.target);
+        }
+    });
 
-// Задание 3. Подключите mouseenter к hoverZone.
-// Добавьте класс is-hovered и покажите сообщение.
-
-// Задание 4. Подключите mouseleave к hoverZone.
-// Уберите класс is-hovered и верните исходный текст статуса.
+}); 
+function handleButtonClick(button) {
+    if (button.id === 'score-button') {
+        points++;
+        if (score) {
+            score.textContent = points; 
+        }
+        if (status) {
+            status.textContent = "Очко засчитано!";
+        }
+    } 
+    else if (button.id === 'submit-btn') {
+        alert('Форма отправлена!');
+    } 
+    else if (button.classList.contains('close-btn')) {
+        alert('Окно закрыто!');
+    }
+}
